@@ -13,10 +13,13 @@ import { AngularFirestoreModule } from "@angular/fire/compat/firestore";
 
 // Environment
 import { environment } from 'src/environments/environment';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { HeaderModule } from './shared/components/header/header.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +29,7 @@ import { environment } from 'src/environments/environment';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    HeaderModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
