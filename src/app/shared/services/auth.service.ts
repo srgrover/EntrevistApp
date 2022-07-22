@@ -1,5 +1,5 @@
 import { UpdateInfo } from './../models/updateInfo';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, GoogleAuthProvider, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, User } from '@angular/fire/auth';
 import { LoginData } from '../models/LoginData';
