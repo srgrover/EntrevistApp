@@ -8,18 +8,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Firebase
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { provideFirebaseApp, initializeApp } from "@angular/fire/app";
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideFunctions, getFunctions } from '@angular/fire/functions';
 import { AngularFirestoreModule } from "@angular/fire/compat/firestore";
 //import { AngularFireAnalytics } from "@angular/fire/compat/analytics";
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { provideAuth, getAuth } from '@angular/fire/auth';
 
 // Environment
 import { environment } from 'src/environments/environment';
-import { HeaderComponent } from './shared/components/header/header.component';
 import { HeaderModule } from './shared/components/header/header.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -27,11 +30,15 @@ import { HeaderModule } from './shared/components/header/header.module';
     BrowserAnimationsModule,
     // Firebase
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideFunctions(() => getFunctions()),
     AngularFireAuthModule,
     AngularFirestoreModule,
     HeaderModule,
   ],
-  providers: [],
+  providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
