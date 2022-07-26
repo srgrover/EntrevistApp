@@ -20,17 +20,17 @@ export class HeaderComponent implements OnInit {
   public user!: User | null;
 
   constructor(private router: Router, public auth: AuthService) {
-    //if(this.debug)console.log(auth.getCurrentUser());
+    //if(environment.debug)console.log(auth.getCurrentUser());
   }
 
   async ngOnInit() {}
 
-  goBack(){    
+  goHome(){    
     this.router.navigate(['home']);
   }
 
   goLogin(){    
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 
   goRegister(){    

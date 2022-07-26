@@ -1,38 +1,42 @@
-<mat-toolbar>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-      </button>
-    <span>
-      <a class="navbar-brand text-black">Entrevist<i><strong>App</strong></i></a>
-    </span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon"
-      aria-label="Recargar">
-      <mat-icon>refresh</mat-icon>
+<mat-toolbar color="primary" class="fixed-top">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>
+    <a class="navbar-brand text-black">Entrevist<i><strong>App</strong></i></a>
+  </span>
+  <button mat-button aria-label="home" (click)="goHome()">
+    Home
+  </button>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Recargar">
+    <mat-icon>refresh</mat-icon>
+  </button>
+
+  <button mat-icon-button [matMenuTriggerFor]="beforeMenu" *ngIf="auth.isLoggedIn()">
+    <mat-icon *ngIf="!auth.getCurrentUser()?.photoURL">account_circle</mat-icon>
+    <img *ngIf="auth.getCurrentUser()?.photoURL" class="rounded-circle" width="30"
+      src="{{auth.getCurrentUser()?.photoURL}}" />
+  </button>
+  <mat-menu #beforeMenu="matMenu" xPosition="before">
+    <span mat-menu-item *ngIf="!auth.getCurrentUser()?.displayName" disabled>{{auth.getCurrentUser()?.email}}</span>
+    <span mat-menu-item *ngIf="auth.getCurrentUser()?.displayName"
+      disabled>{{auth.getCurrentUser()?.displayName}}</span>
+    <button mat-menu-item (click)="goToProfile()" class="d-flex justify-content-between align-items-center">
+      Perfil
     </button>
-  
-    <button mat-icon-button [matMenuTriggerFor]="beforeMenu" *ngIf="auth.isLoggedIn()">
-      <mat-icon *ngIf="!auth.getCurrentUser()?.photoURL">account_circle</mat-icon>
-      <img *ngIf="auth.getCurrentUser()?.photoURL" class="rounded-circle" width="30" src="{{auth.getCurrentUser()?.photoURL}}"/>
+    <button mat-menu-item (click)="logout()" class="d-flex justify-content-between align-items-center">
+      Salir
     </button>
-    <mat-menu #beforeMenu="matMenu" xPosition="before">
-      <span mat-menu-item *ngIf="!auth.getCurrentUser()?.displayName" disabled>{{auth.getCurrentUser()?.email}}</span>
-      <span mat-menu-item *ngIf="auth.getCurrentUser()?.displayName" disabled>{{auth.getCurrentUser()?.displayName}}</span>
-      <button mat-menu-item (click)="goToProfile()" class="d-flex justify-content-between align-items-center">
-        Perfil
-      </button>
-      <button mat-menu-item (click)="logout()" class="d-flex justify-content-between align-items-center">
-        Salir
-      </button>
-    </mat-menu>
-  
-    <button *ngIf="!auth.isLoggedIn()" color="secondary" mat-flat-button class="example-icon favorite-icon" (click)="goLogin()"
-      aria-label="login" class="mx-1">
-      Iniciar sesion
-    </button>
-    <button *ngIf="!auth.isLoggedIn()" color="primary" mat-flat-button class="example-icon favorite-icon" (click)="goRegister()"
-      aria-label="register" class="mx-1">
-      Registro
-    </button>
-  </mat-toolbar>
-  <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+  </mat-menu>
+
+  <button *ngIf="!auth.isLoggedIn()" color="accent" mat-flat-button class="example-icon favorite-icon"
+    (click)="goLogin()" aria-label="login" class="mx-1">
+    Iniciar sesion
+  </button>
+  <button *ngIf="!auth.isLoggedIn()" mat-flat-button class="example-icon favorite-icon" (click)="goRegister()"
+    aria-label="register" class="mx-1">
+    Registro
+  </button>
+</mat-toolbar>
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
