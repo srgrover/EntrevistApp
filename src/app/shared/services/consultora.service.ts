@@ -1,3 +1,5 @@
+import { AuthService } from './auth.service';
+import { DbService } from './db.service';
 import { Consultora } from './../models/Consultora';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -9,16 +11,12 @@ export class ConsultoraService {
 
   consultoraCollection: any
 
-  constructor(private angularfirestore: AngularFirestore) {
-    this.consultoraCollection = this.angularfirestore.collection("Consultora")
+  constructor(private angularfirestore: AngularFirestore, private db: DbService, private auth: AuthService) {
+    this.consultoraCollection = this.angularfirestore.collection("Consultora");
   }
 
   getConsultoras(){
-    var t = this.angularfirestore
-      .collection("Consultora")
-      .snapshotChanges();
-
-      return t
+    return this.db.get$('Consultora', ref => ref.where('usuario', '==', this.auth.getCurrentUser().uid))
   }
 
   getConsultoraById(id: string){
@@ -27,28 +25,34 @@ export class ConsultoraService {
       .valueChanges();
   }
 
-  createConsultora(calificacion: Consultora){
+  createConsultora(consultora: Consultora): Promise<void>{
     return new Promise<any>((resolve, reject) => {
-      this.consultoraCollection
-        .add(calificacion)
+      try {
+        consultora.id = consultora.id || this.angularfirestore.createId();
+        const res = this.consultoraCollection
+        .add(consultora)
         .then((response) => {
-          console.log(response);
+          console.log("RESPONSE: ",response);
         },
         (error) => {
           reject(error);
-        })
-    })
+        });
+        resolve(res);
+      } catch (error) {
+        reject(error);
+      }
+    });
   }
 
-  updateConsultora(calificacion: Consultora, id: string){
+  updateConsultora(consultora: Consultora, id: string){
     return this.consultoraCollection
       .doc(id)
-      .update(calificacion);
+      .update(consultora);
   }
 
-  deleteConsultora(calificacion: Consultora){
+  deleteConsultora(consultora: Consultora){
     return this.consultoraCollection
-      .doc(calificacion.id)
+      .doc(consultora.id)
       .delete()
   }
 }
