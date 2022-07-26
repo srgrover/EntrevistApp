@@ -1,0 +1,167 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+// PASOS PARA CREAR UN TEMA PERSONALIZADO EN ANGULAR MATERIAL
+// 1. GAMA DE COLORES
+$custom-accent-palette: (
+    50 : #e8f1f9,
+    100 : #c5dcef,
+    200 : #9fc4e4,
+    300 : #78acd9,
+    400 : #5b9bd1,
+    500 : #3e89c9,
+    600 : #3881c3,
+    700 : #3076bc,
+    800 : #286cb5,
+    900 : #1b59a9,
+    A100 : #e0ecff,
+    A200 : #adceff,
+    A400 : #7ab0ff,
+    A700 : #60a1ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$custom-warn-palette: (
+    50 : #ffe0ec,
+    100 : #ffb3d0,
+    200 : #ff80b1,
+    300 : #ff4d92,
+    400 : #ff267a,
+    500 : #ff0063,
+    600 : #ff005b,
+    700 : #ff0051,
+    800 : #ff0047,
+    900 : #ff0035,
+    A100 : #ffffff,
+    A200 : #fff2f4,
+    A400 : #ffbfc9,
+    A700 : #ffa6b3,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$custom-success-palette: (
+    50 : #ecf9ed,
+    100 : #cff1d2,
+    200 : #afe8b4,
+    300 : #8fde95,
+    400 : #77d77f,
+    500 : #5fd068,
+    600 : #57cb60,
+    700 : #4dc455,
+    800 : #43be4b,
+    900 : #32b33a,
+    A100 : #fafffa,
+    A200 : #c7ffca,
+    A400 : #94ff99,
+    A700 : #7aff81,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+// 2. DEFINIR EL COLOR DE LA PALETA DE COLORES EN NUESTROS COLORES POR DEFECTO
+$my-primary: mat.define-palette(mat.$cyan-palette, 600, A100, A400);
+$my-accent: mat.define-palette($custom-accent-palette, 600);
+$my-success: mat.define-palette($custom-success-palette, 600);
+// The "warn" palette is optional and defaults to red if not specified.
+$my-warn: mat.define-palette($custom-warn-palette, 500);
+
+// 3. AGREGAR LAS PALETAS DE COLORES AL TEMA
+$my-theme: mat.define-light-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+   success: $my-success,
+   warn: $my-warn,
+ )
+));
+
+// 4. AGREGAR EL TEMA AL CORE O A LOS COMOPONENTES
+@include mat.all-component-themes($my-theme);
+
+// 5. AGREGAR LA REFERENCIA DE ESTE ESTILO EN ANGULAR.JSON --> SECCION STYLES Y BORRAR LA DEL TEMA POR DEFECTO
+
+
+
+
+
+
+
+/*$my-primary-color: (
+  200 : #76b9fc,
+  500 : #3e89c9,
+  700 : #005c98,
+  contrast: (
+    200 : #000000,
+    500 : #ffffff,
+    700 : #ffffff,
+  )
+);
+
+$my-accent-color: (
+  200 : #89ece4,
+  500 : #55b9b2,
+  700 : #168983,
+  contrast: (
+    200 : #000000,
+    500 : #ffffff,
+    700 : #ffffff,
+  )
+);
+
+$my-warn-color: (
+  200 : #ff7b73,
+  500 : #eb4747,
+  700 : #b2001f,
+  contrast: (
+    200 : #000000,
+    500 : #000000,
+    700 : #000000,
+  )
+);*/
