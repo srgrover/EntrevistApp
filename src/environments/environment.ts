@@ -1,5 +1,6 @@
 export const environment = {
   production: false,
+  debug: true,
   firebaseConfig: {
     apiKey: "AIzaSyAkfh8buJ1Z0S7umrL0GNXAAiS00mQVpcc",
     authDomain: "entrevistapp-787c6.firebaseapp.com",
