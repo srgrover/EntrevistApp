@@ -14,7 +14,7 @@ export class ClienteService {
   }
 
 
-  getCliente(){
+  getClientes(){
     var t = this.angularfirestore
       .collection("Cliente")
       .snapshotChanges();

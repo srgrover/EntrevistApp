@@ -4,15 +4,12 @@ import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, GoogleAuthProvider, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, User } from '@angular/fire/auth';
 import { LoginData } from '../models/LoginData';
 import { RegisterData } from '../models/RegisterData';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-//Administración -------------------
-  public debug: boolean = false;
-//----------------------------------
-
   //public user: User | null;
   public user$: Subject<User | null>;
 
@@ -74,7 +71,7 @@ export class AuthService {
   async resetPassword(email: string): Promise<any> {
     // sends reset password email
     var y = await sendPasswordResetEmail(this.auth, email);
-    if(this.debug)console.log("🚀 ~ file: auth.service.ts ~ line 74 ~ AuthService ~ resetPassword ~ y", y)
+    if(environment.debug)console.log("🚀 ~ file: auth.service.ts ~ line 74 ~ AuthService ~ resetPassword ~ y", y)
   }
 
   async sendEmailVerification(user: User){
