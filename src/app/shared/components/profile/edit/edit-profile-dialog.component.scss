@@ -1,0 +1,33 @@
+$heightAvatar: 172px;
+$widthAvatar: 172px;
+
+.avatar{
+    overflow: hidden;
+    display: inline-block;
+    border-radius: 500px;
+    height: $heightAvatar;
+    width: $widthAvatar;
+
+    img{
+        height: $heightAvatar;
+    }
+
+    mat-icon{
+        height: $heightAvatar;
+        width: $widthAvatar;
+        font-size: $heightAvatar;
+    }
+}
+
+.p-text{
+    font-family: Roboto,Arial,sans-serif;
+    line-height: 1.25rem;
+    font-size: .875rem;
+    letter-spacing: .0142857143em;
+    font-weight: 400;
+    color: #5f6368;
+}
+
+.btn-dialog{
+    //width: 49%;
+}

@@ -1,0 +1,157 @@
+<form class="g-3 mx-3 my-3" (ngSubmit)="onSave()" [formGroup]="consultoraForm">
+    <h2>Consultora</h2>
+    <section class="d-flex align-items-center mb-3">
+        <mat-checkbox class="mr-4" #isOnlyClient [disabled]="isOnlyConsultant.checked">No hay consultora intermediaria
+        </mat-checkbox>
+        <mat-icon class="text-muted" #tooltip="matTooltip"
+            matTooltip="Selecciona esta opción si la contratación es directamente con un cliente final sin necesidad de consultoras intermediarias"
+            matTooltipPosition="below">info-outline</mat-icon>
+    </section>
+
+    <section class="row" *ngIf="!isOnlyClient.checked">
+        <div class="col-md-6">
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Nombre de reclutador</mat-label>
+                <input type="text" matInput formControlName="reclutador" placeholder="Ej. Harry Potter"
+                    id="inputReclutador" />
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Empresa consultora</mat-label>
+                <input type="text" matInput formControlName="empresa" placeholder="Ej. Hogwarts" id="inputEmpresa" />
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Email de contacto</mat-label>
+                <input type="text" matInput formControlName="email" placeholder="Ej. harryPotter@Hogwarts.com"
+                    id="inputEmail" />
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Teléfono de contacto</mat-label>
+                <input type="text" matInput formControlName="telefono" placeholder="Ej. 711223344" id="inputTelefono" />
+            </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha de contacto</mat-label>
+            <input matInput type="text" formControlName="fechaContacto" [matDatepicker]="dpFechaContacto"
+                [disabled]="true" />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="dpFechaContacto"></mat-datepicker-toggle>
+            <mat-datepicker #dpFechaContacto disabled="false"></mat-datepicker>
+        </mat-form-field>
+
+        <div class="col-md-4">
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Ubicacion</mat-label>
+                <input type="text" matInput formControlName="ubicacion" placeholder="Ej. Hogwarts"
+                    id="inputUbicacion" />
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-4">
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Observaciones</mat-label>
+                <textarea matInput formControlName="observaciones"
+                    placeholder="Ej. 23 dias de vacacaiones, horario flexible, tickets restaurante, etc..."
+                    id="inputObservaciones"></textarea>
+            </mat-form-field>
+        </div>
+    </section>
+
+</form>
+
+<form class="g-3 mx-3 my-3" (ngSubmit)="onSave()" [formGroup]="clienteForm">
+    <h2>Cliente</h2>
+    <section class="d-flex align-items-center mb-3">
+        <mat-checkbox class="mr-4" #isOnlyConsultant [disabled]="isOnlyClient.checked">Trabajo directamente para la
+            consultora</mat-checkbox>
+        <mat-icon class="text-muted" #tooltip="matTooltip"
+            matTooltip="Selecciona esta opción si el cliente final es directamente la empresa consultora"
+            matTooltipPosition="below">info-outline</mat-icon>
+    </section>
+    <section class="row" *ngIf="!isOnlyConsultant.checked">
+        <div class="col-md-6">
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Nombre Empresa Cliente</mat-label>
+                <input type="text" matInput formControlName="nombreEmpresa" placeholder="Ej. Ministerio de magia"
+                    id="inputNombreEmpresa" />
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Persona de contacto</mat-label>
+                <input type="text" matInput formControlName="personaContacto" placeholder="Ej. Albus Dumbledore"
+                    id="inputPersonaContacto" />
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-4">
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Modalidad Trabajo</mat-label>
+                <mat-select formControlName="modalidadTrabajo" id="inputModalidadTrabajo"
+                    [(ngModel)]="modalidadTrabajo">
+                    <mat-option *ngFor="let item of modalidadTrabajoList" [value]="item">{{
+                        item
+                        }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-4">
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Modalidad Trabajo</mat-label>
+                <mat-select formControlName="modalidadTrabajo" id="inputModalidadTrabajo"
+                    [(ngModel)]="modalidadTrabajo">
+                    <mat-option *ngFor="let item of modalidadTrabajoList" [value]="item">{{
+                        item
+                        }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-4">
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Tipo Contrato</mat-label>
+                <mat-select formControlName="tipoContrato" id="inputTipoContrato" [(ngModel)]="tipoContrato">
+                    <mat-option *ngFor="let item of tipoContratoList" [value]="item">
+                        {{item}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-4">
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Ubicacion</mat-label>
+                <input type="text" matInput formControlName="ubicacion" placeholder="Ej. Hogwarts"
+                    id="inputUbicacion" />
+            </mat-form-field>
+        </div>
+    </section>
+</form>
+
+<mat-divider></mat-divider>
+
+<div class="d-flex justify-content-between mt-3 mb-3">
+    <button type="button" *ngIf="stateForm != 1" mat-flat-button color="warn" class="mx-1">
+        <mat-icon mat-list-icon>delete_outline</mat-icon>
+        Borrar registro
+    </button>
+    <button type="submit" *ngIf="stateForm == 1" mat-flat-button color="accent" (click)="onSave()">
+        <mat-icon mat-list-icon>add</mat-icon>
+        Añadir registro
+    </button>
+    <button type="submit" *ngIf="stateForm == 2" mat-flat-button color="accent" class="mx-1">
+        <mat-icon mat-list-icon>edit_outline</mat-icon>
+        Editar registro
+    </button>
+</div>

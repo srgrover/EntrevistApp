@@ -1,0 +1,48 @@
+<h2 mat-dialog-title class="d-flex align-items-center">
+    {{data.title}}
+</h2>
+<h3 class="p-text">
+    {{data.subtitle}}
+</h3>
+
+<form (ngSubmit)="updateInfo()" [formGroup]="infoForm">
+    <div mat-dialog-content class="mb-5">
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre para mostrar</mat-label>
+            <input matInput value="{{data.currentUser.displayName}}" formControlName="displayName">
+        </mat-form-field>
+
+        <p class="p-text">Si añades una foto de perfil personalizada sabrás si has iniciado sesión en tu cuenta</p>
+
+        <div class="d-flex justify-content-center">
+            <div class="avatar" *ngIf="srcImage != null">
+                <img src="{{srcImage}}" alt="Imagen de perfil">
+            </div>
+
+            <div class="avatar" *ngIf="(srcImage == null) || (data.currentUser.photoURL && srcImage == null)">
+                <mat-icon>account_circle</mat-icon>
+            </div>
+        </div>
+
+        <mat-form-field appearance="fill" class="w-100 mb-2">
+            <mat-label>Foto de perfil</mat-label>
+            <input matInput value="{{data.currentUser.photoURL}}" class="w-100" formControlName="photoURL" (change)="onChangeURL($event)">
+            <button *ngIf="srcImage" matSuffix mat-icon-button aria-label="Clear" (click)="srcImage=null; infoForm.get('photoURL')?.setValue('')">
+                <mat-icon>close</mat-icon>
+              </button>
+        </mat-form-field>
+        <p class="p-text">Pega aquí la URL de la foto que quieras utilizar como tu foto de perfil. No es necesario subir
+            documentos de momento.</p>
+    </div>
+
+    <div mat-dialog-actions class="d-flex justify-content-between">
+        <button mat-stroked-button color="accent" type="button" (click)="cancel()">
+            <mat-icon>close</mat-icon>
+            Cancelar
+        </button>
+        <button mat-stroked-button color="accent" type="submit">
+            <mat-icon>edit</mat-icon>
+            Cambiar
+        </button>
+    </div>
+</form>

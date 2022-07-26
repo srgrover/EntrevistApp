@@ -1,0 +1,37 @@
+$googleColor:#DB4437;
+$facebookColor:#4267B2;
+
+.googleColorBackground{
+    background-color: $googleColor;
+}
+
+.facebookColorBackground{
+    background-color: $facebookColor;
+}
+
+.facebookColorBorder{
+    border: 1px solid $facebookColor;
+}
+
+.mt--2{
+    margin-top: -2px;
+}
+
+.letter-spacing-1{
+    letter-spacing: 1px;
+}
+
+.titleSpan {
+    letter-spacing: 0.07272727em;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    hyphens: auto;
+    word-break: break-word;
+    word-wrap: break-word;
+    color: #5f6368;
+    margin: 0;
+    padding: 0;
+    align-self: center;
+  }

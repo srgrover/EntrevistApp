@@ -19,6 +19,8 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 // Environment
 import { environment } from 'src/environments/environment';
 import { HeaderModule } from './shared/components/header/header.module';
+import { EditProfileDialogModule } from './shared/components/profile/edit/edit-profile-dialog.module';
+import { FormModule } from './shared/components/form/form.module';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,10 @@ import { HeaderModule } from './shared/components/header/header.module';
     provideFunctions(() => getFunctions()),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    // Modules
     HeaderModule,
+    EditProfileDialogModule,
+    FormModule,
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent]
