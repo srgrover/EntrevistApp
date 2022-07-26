@@ -1,15 +1,19 @@
+import { Cliente } from './Cliente';
 import { Timestamp } from "firebase/firestore";
 
 export interface Consultora {
-    id: string;
+    id?: string;
     reclutador: string;
     empresa?: string;
-    email: string;
+    email?: string;
     fechaContacto: Timestamp;
-    fechaUltContacto?: Timestamp;
-    telefono: string;
-    observaciones: string;
-    ubicacion: string;
+    fechaCreacion: Timestamp;
+    fechaModificacion?: Timestamp;
+    telefono?: string;
+    observaciones?: string;
+    ubicacion?: string;
+    usuario: string;
+    cliente?: Cliente[];
   }
 
   

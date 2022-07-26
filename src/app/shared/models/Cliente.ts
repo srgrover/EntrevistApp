@@ -7,16 +7,17 @@ export interface Cliente{
     descripcionPuesto: string;
     tipoContrato: string;
     modalidadTrabajo: string;
-    ubicacion: string;
+    ubicacion?: string;
     estadoPosicion: string;
     favorito: boolean;
+    fechaCreacion: Timestamp;
+    fechaModificacion?: Timestamp;
     fechaCambioEstado: Timestamp;
-    fechaEntrevista: Timestamp;
-    fechaUltEntrevista: Timestamp;
-    motivoRechazo: string;
-    observaciones: string;
-    rechazado: boolean;
-    rechazadoPor: string;
+    motivoRechazo?: string;
+    observaciones?: string;
+    rechazado?: boolean;
+    rechazadoPor?: string;
+    usuario: string;
 }
 
 
